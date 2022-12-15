@@ -2,15 +2,13 @@ const Order = require("../models/Order");
 
 function create_order(req, res) {
     var products = req.body.products;
-    var username = req.body.username;
-    var date = req.body.date;
-    if (products == null || username == null) {
+    var total = req.body.total;
+    if (products == null) {
         res.status(400).send("You did not enter all the needed parameters :( Please try again")
     } else {
         const order = new Order({
             products: products,
-            username: username,
-            date: date
+            total: total
         });
         order.save().then(res.status(200).send('success'))
     }
